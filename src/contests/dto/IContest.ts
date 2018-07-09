@@ -1,0 +1,38 @@
+import { IAttr } from "./IAttr";
+import { IPd } from "./IPd";
+export interface IContest {
+    uc: number;
+    ec: number;
+    mec: number;
+    fpp: number;
+    s: number;
+    n: string;
+    attr: IAttr;
+    nt: number;
+    m: number;
+    a: number;
+    po: number;
+    pd: IPd;
+    tix: boolean;
+    sdstring: string;
+    sd: Date;
+    id: number;
+    tmpl: number;
+    pt: number;
+    so: number;
+    fwt: boolean;
+    isOwner: boolean;
+    startTimeType: number;
+    dg: number;
+    ulc: number;
+    cs: number;
+    gameType: string;
+    ssd?: any;
+    dgpo: number;
+    cso: number;
+    ir: number;
+    rl: boolean;
+    rlc: number;
+    rll: number;
+    sa: boolean;
+}

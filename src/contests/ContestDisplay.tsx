@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { IContest } from './IContest';
+import { IDisplayContest } from './IDisplayContest';
 
 
-class ContestDisplay extends React.Component<{contest:IContest}> {
+class ContestDisplay extends React.Component<{contest:IDisplayContest}> {
     public render() {
         const {name, style} = this.props.contest;
         return (

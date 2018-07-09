@@ -8,3 +8,6 @@ https://stedolan.github.io/jq/manual/#Advancedfeatures
 https://duckduckgo.com/?q=save+tab+groups+firefox&t=ffab&ia=web
 https://addons.mozilla.org/en-US/firefox/addon/tab-groups-panorama/
 https://www.ghacks.net/2015/08/04/how-to-save-all-open-tabs-quickly-in-your-browser-of-choice/
+
+
+jq -C "[.Contests[].attr] | add" getcontests.json

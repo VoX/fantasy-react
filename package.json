@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "awesome-typescript-loader": "^5.2.0",
+    "linqts": "^1.12.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
-    "react-scripts-ts": "2.16.0"
+    "react-scripts-ts": "2.16.0",
+    "typescript-dotnet-commonjs": "^4.11.1"
   },
   "scripts": {
     "start": "react-scripts-ts start",
