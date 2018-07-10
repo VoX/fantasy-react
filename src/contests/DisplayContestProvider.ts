@@ -1,30 +1,41 @@
+import Enumerable from "typescript-dotnet-commonjs/System.Linq/Linq"
 import { ContestProvider } from "./ContestProvider";
 import { IDisplayContest } from "./IDisplayContest";
-import { List } from 'linqts';
 import { SportsProvider } from "./SportsProvider";
-import { IContest } from "./dto/IContest";
-import { ISport } from "./dto/ISport";
 
 export class DisplayContestProvider {
     private contestprovider: ContestProvider;
-    private sportProvider: SportsProvider;
+    private sportsProvider: SportsProvider;
 
-
-    constructor(contestProvider: ContestProvider, sportsProvider:SportsProvider) {
+    constructor(contestProvider: ContestProvider,
+        sportsProvider: SportsProvider) {
         this.contestprovider = contestProvider;
-        this.sportProvider = this.sportProvider;
+        this.sportsProvider = sportsProvider;
     }
 
-    public async getDisplayContests(sport: string):Promise<IDisplayContest[]> {
+    public async getDisplayContests(sport: string): Promise<IDisplayContest[]> {
         const contestResponse = await this.contestprovider.getContests(sport);
-        const contests = new List<IContest>(contestResponse.Contests);
-        const sportsResponse = await this.sportProvider.getSports();
-        const sports = new List<ISport>(sportsResponse.sports);
-        //return [{name : "hi", sport : "MLB", attributes : [""], fee : "$15", start : new Date(), entries : 2, id : 1337, maxEntries: 5, multiEntries: 1, prizes : "$1,500", style : "Classic"}];
-        return contests.Select(c=> ({name : c.n, sport : , attributes : [], fee : "$15", start : new Date(), entries : 2, id : 1337, maxEntries: 5, multiEntries: 1, prizes : "$1,500", style : "Classic"})).ToArray();
+        const contests = Enumerable.from(contestResponse.Contests);
+        const sportsResponse = await this.sportsProvider.getSports();
+        const sports = Enumerable.from(sportsResponse.sports);
+
+        return contests.select(c => ({
+            attributes: Enumerable.from(c.attr).where(x => x.value === "true").select(x => x.key).toArray(),
+            entries: c.ec,
+            fee: `$${c.a}`,
+            id: c.id,
+            maxEntries: c.m,
+            multiEntries: c.mec,
+            name: c.n,
+            prizes: c.pd.Cash + (c.pd.Ticket === null || c.pd.Ticket === undefined ? "" : ` + ${c.pd.Ticket}`),
+            sport: sports.where(s => s.sportId === c.s).first().fullName,
+            start: this.getDate(c.sd),
+            style: c.gameType
+        })).toArray();
     }
 
-    private lookupSport(contest:IContest, sports:List<ISport>){
-        return sports.First((x) => )
+    private getDate(datestr: string) {
+        const offset = "/Date(".length;
+        return new Date(datestr.substr(offset).substr(0, datestr.length - offset - 2));
     }
 }

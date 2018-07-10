@@ -8,7 +8,7 @@ export class ContestProvider {
     }
 
     public async getContests(sport: string) {
-        const response = await fetch(`${this.connectionString}/lobby/getcontests?sport=${sport}`);
+        const response = await fetch(`${this.connectionString}/lobby/getcontests?sport=${sport}`, {mode: "cors"});
         const body = await response.text();
         return JSON.parse(body) as IContestResponse;
     }

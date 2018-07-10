@@ -1,4 +1,4 @@
-import { IAttr } from "./IAttr";
+import { IDictionary } from "../../../node_modules/typescript-dotnet-commonjs/System/Collections/Dictionaries/IDictionary";
 import { IPd } from "./IPd";
 export interface IContest {
     uc: number;
@@ -7,7 +7,7 @@ export interface IContest {
     fpp: number;
     s: number;
     n: string;
-    attr: IAttr;
+    attr: IDictionary<string,string>;
     nt: number;
     m: number;
     a: number;
@@ -15,7 +15,7 @@ export interface IContest {
     pd: IPd;
     tix: boolean;
     sdstring: string;
-    sd: Date;
+    sd: string;
     id: number;
     tmpl: number;
     pt: number;
