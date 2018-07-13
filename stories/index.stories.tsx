@@ -2,11 +2,11 @@ import * as React from 'react';
 
 import { storiesOf } from '@storybook/react';
 
-import ContestDisplay from '../src/contests/ContestDisplay';
-import { ContestProvider } from '../src/contests/ContestProvider';
-import { DisplayContestProvider } from '../src/contests/DisplayContestProvider';
-import { IDisplayContest } from '../src/contests/IDisplayContest';
-import { SportsProvider } from '../src/contests/SportsProvider';
+import ContestDisplay from './contest/ContestDisplay';
+import { ContestProvider } from './contest/ContestProvider';
+import { DisplayContestProvider } from './contest/DisplayContestProvider';
+import { IDisplayContest } from './contest/IDisplayContest';
+import { SportsProvider } from './sport/SportsProvider';
 
 const prodUrl = "https://www.draftkings.com";
 const prodProvider = new ContestProvider(prodUrl);
