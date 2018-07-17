@@ -1,5 +1,4 @@
 import { ServiceClient } from "../service/ServiceClient";
-import { IContestRequest } from "./dto/IContestRequest";
 import { IContestResponse } from "./dto/IContestResponse";
 
 export class ContestProvider {
@@ -9,7 +8,7 @@ export class ContestProvider {
         this.serviceClient = serviceClient;
     }
 
-    public getContests(sport: string):Promise<IContestResponse> {
-        return this.serviceClient.get<IContestRequest>();
+    public getContests(sport: string) {
+        return this.serviceClient.get<IContestResponse>({pathTemplate:""});
     }
 }

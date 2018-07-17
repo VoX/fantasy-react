@@ -1,7 +1,7 @@
 import Enumerable from "typescript-dotnet-commonjs/System.Linq/Linq"
+import { SportsProvider } from "../sport/SportsProvider";
 import { ContestProvider } from "./ContestProvider";
 import { IDisplayContest } from "./IDisplayContest";
-import { SportsProvider } from "./SportsProvider";
 
 export class DisplayContestProvider {
     private contestprovider: ContestProvider;

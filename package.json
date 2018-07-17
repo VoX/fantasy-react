@@ -9,10 +9,8 @@
     "typescript-dotnet-commonjs": "^4.11.1"
   },
   "scripts": {
-    "start": "react-scripts-ts start",
-    "build": "react-scripts-ts build",
-    "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject",
+    "build": "webpack --config webpack.production.config.js",
+    "start": "webpack-dev-server --progress --open",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
@@ -21,7 +19,7 @@
     "@storybook/addon-info": "^3.4.8",
     "@storybook/addon-links": "^3.4.8",
     "@storybook/addons": "^3.4.8",
-    "@storybook/react": "^3.4.8",
+    "@storybook/react": "4.0.0-alpha.3",
     "@types/jest": "^23.1.4",
     "@types/node": "^10.5.2",
     "@types/react": "^16.4.6",
@@ -29,9 +27,20 @@
     "@types/storybook__addon-actions": "^3.0.3",
     "@types/storybook__addon-links": "^3.3.1",
     "@types/storybook__react": "^3.0.8",
+    "awesome-typescript-loader": "^5.2.0",
     "babel-core": "^6.26.3",
     "babel-runtime": "^6.26.0",
+    "css-loader": "^1.0.0",
+    "file-loader": "^1.1.11",
+    "fork-ts-checker-webpack-plugin": "^0.4.3",
+    "html-loader": "^0.5.5",
+    "image-webpack-loader": "^4.3.1",
     "react-docgen-typescript-webpack-plugin": "^1.1.0",
-    "typescript": "^2.9.2"
+    "ts-loader": "^4.4.2",
+    "tslint": "^5.11.0",
+    "typescript": "^2.9.2",
+    "webpack": "4.16.1",
+    "webpack-cli": "^3.0.8",
+    "webpack-dev-server": "^3.1.4"
   }
 }

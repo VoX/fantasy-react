@@ -1,19 +1,11 @@
 const path = require("path");
-const include = path.resolve(__dirname, '../');
-
-module.exports = {
-    // Add '.ts' and '.tsx' as resolvable extensions.
-    resolve: {
-      extensions: [".ts", ".tsx", ".js"]
-    },
-    module: {
-        rules: [
-            {
-              test: /\.tsx?/,
-              loader: 'babel-loader!ts-loader',
-              exclude: /node_modules/,
-              include
-            }
-        ]
-    }
-  };
+const TSDocgenPlugin = require("react-docgen-typescript-webpack-plugin");
+module.exports = (baseConfig, env, config) => {
+  config.module.rules.push({
+    test: /\.(ts|tsx)$/,
+    loader: require.resolve("awesome-typescript-loader")
+  });
+  config.plugins.push(new TSDocgenPlugin()); // optional
+  config.resolve.extensions.push(".ts", ".tsx");
+  return config;
+};

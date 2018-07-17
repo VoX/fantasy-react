@@ -1,4 +1,4 @@
-import { IReturns } from "./IRequest";
+import { IRequest } from "./IRequest";
 
 export class ServiceClient  {
     private connectionString: string;
@@ -7,8 +7,8 @@ export class ServiceClient  {
         this.connectionString = connectionString;
     }
 
-    public async get<TResponse>(IReturns<TResponse> request) {
-        const response = await fetch(`${this.connectionString}/lobby/getcontests?sport=${sport}`, {mode: "cors"});
+    public async get<TResponse>(request:IRequest<TResponse>):Promise<TResponse> {
+        const response = await fetch(`${this.connectionString}/${request.pathTemplate}`, {mode: "cors"});
         const body = await response.text();
         return JSON.parse(body) as TResponse;
     }

@@ -1,15 +1,14 @@
+import { ServiceClient } from "../service/ServiceClient";
 import { ISportConfigResponse } from "./dto/ISportConfigResponse";
 
 export class SportsProvider {
-    private connectionString: string;
+    private serviceClient: ServiceClient;
 
-    constructor(connectionString: string) {
-        this.connectionString = connectionString;
+    constructor(serviceClient: ServiceClient) {
+        this.serviceClient = serviceClient;
     }
 
-    public async getSports() {
-        const response = await fetch(`${this.connectionString}/sports/v1/sports?format=json`, {mode: "cors"});
-        const body = await response.text();
-        return JSON.parse(body) as ISportConfigResponse;
+    public getSports() {
+        return this.serviceClient.get<ISportConfigResponse>({pathTemplate: "/sports/v1/sports?format=json"})
     }
 }

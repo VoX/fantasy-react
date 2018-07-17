@@ -1,4 +1,4 @@
-import { IDictionary } from "../../../node_modules/typescript-dotnet-commonjs/System/Collections/Dictionaries/IDictionary";
+import { IDictionary } from "typescript-dotnet-commonjs/System/Collections/Dictionaries/IDictionary";
 import { IPd } from "./IPd";
 export interface IContest {
     uc: number;

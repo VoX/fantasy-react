@@ -2,15 +2,17 @@ import * as React from 'react';
 
 import { storiesOf } from '@storybook/react';
 
-import ContestDisplay from './contest/ContestDisplay';
-import { ContestProvider } from './contest/ContestProvider';
-import { DisplayContestProvider } from './contest/DisplayContestProvider';
-import { IDisplayContest } from './contest/IDisplayContest';
-import { SportsProvider } from './sport/SportsProvider';
+import ContestDisplay from 'contest/ContestDisplay';
+import { ContestProvider } from 'contest/ContestProvider';
+import { DisplayContestProvider } from 'contest/DisplayContestProvider';
+import { IDisplayContest } from 'contest/IDisplayContest';
+import { ServiceClient } from 'service/ServiceClient';
+import { SportsProvider } from 'sport/SportsProvider';
 
 const prodUrl = "https://www.draftkings.com";
-const prodProvider = new ContestProvider(prodUrl);
-const sportsProvider = new SportsProvider(prodUrl);
+const serviceClient = new ServiceClient(prodUrl);
+const prodProvider = new ContestProvider(serviceClient);
+const sportsProvider = new SportsProvider(serviceClient);
 const displayProvider = new DisplayContestProvider(prodProvider, sportsProvider);
 
 function getContest() {
