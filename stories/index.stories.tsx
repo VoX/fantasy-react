@@ -1,19 +1,10 @@
 import * as React from 'react';
 
+import { withInfo } from "@storybook/addon-info";
 import { storiesOf } from '@storybook/react';
 
-import ContestDisplay from 'contest/ContestDisplay';
-import { ContestProvider } from 'contest/ContestProvider';
-import { DisplayContestProvider } from 'contest/DisplayContestProvider';
-import { IDisplayContest } from 'contest/IDisplayContest';
-import { ServiceClient } from 'service/ServiceClient';
-import { SportsProvider } from 'sport/SportsProvider';
-
-const prodUrl = "https://www.draftkings.com";
-const serviceClient = new ServiceClient(prodUrl);
-const prodProvider = new ContestProvider(serviceClient);
-const sportsProvider = new SportsProvider(serviceClient);
-const displayProvider = new DisplayContestProvider(prodProvider, sportsProvider);
+import ContestDisplay from '../src/contest/ContestDisplay';
+import { IDisplayContest } from '../src/contest/IDisplayContest';
 
 function getContest() {
   const contest:IDisplayContest = {name : "hi", sport : "MLB", attributes : [""], fee : "$15", start : new Date(), entries : 2, id : 1337, maxEntries: 5, multiEntries: 1, prizes : "$1,500", style : "Classic"};
@@ -24,16 +15,12 @@ const reserveOnlyContest:IDisplayContest = getContest();
 const upcomingContest:IDisplayContest = getContest();
 const startedContest:IDisplayContest = getContest();
 
-const stories = storiesOf('ContestDisplay', module)
-.add('ReserveOnly', () => <ContestDisplay contest = {reserveOnlyContest}/>)
+storiesOf('ContestDisplay', module)
+.add('ReserveOnly', withInfo({inline:true})(() => <ContestDisplay contest = {reserveOnlyContest}/>))
 .add('Upcoming', () => <ContestDisplay contest = {upcomingContest}/>)
 .add('Started', () => (<ContestDisplay contest = {startedContest}/>))
 
-displayProvider.getDisplayContests("MLB").then((contests)=>{
-  stories.add('ProdData', () => {
-    return contests.map((c) => <ContestDisplay key={c.id} contest={startedContest}/>);
-  });
-});
+
 
 
 
